@@ -1,7 +1,27 @@
+const fs = require('fs');
+const path = require('path');
+
 class ProductManager {
-    constructor() {
-        this.products = [];
-        this.nextId = 1;
+    constructor(filename) {
+        this.filePath = path.join(__dirname, filename);
+        this.loadProducts(); // Cargar productos desde el archivo al iniciar
+    }
+
+    loadProducts() {
+        try {
+            const data = fs.readFileSync(this.filePath, 'utf8');
+            const { products, nextId } = JSON.parse(data);
+            this.products = products;
+            this.nextId = nextId;
+        } catch (error) {
+            this.products = [];
+            this.nextId = 1;
+        }
+    }
+
+    saveProducts() {
+        const data = JSON.stringify({ products: this.products, nextId: this.nextId });
+        fs.writeFileSync(this.filePath, data, 'utf8');
     }
 
     getProducts() {
@@ -19,6 +39,7 @@ class ProductManager {
             stock
         };
         this.products.push(product);
+        this.saveProducts(); // Guardar cada vez que se modifica la lista de productos
         return product;
     }
 
@@ -36,8 +57,8 @@ class ProductManager {
             throw new Error('Product not found');
         }
 
-
         this.products[productIndex] = { ...this.products[productIndex], ...productData, id };
+        this.saveProducts(); // Guardar cambios en el archivo
         return this.products[productIndex];
     }
 
@@ -48,39 +69,9 @@ class ProductManager {
         }
 
         this.products.splice(productIndex, 1);
+        this.saveProducts(); // Guardar cambios en el archivo
     }
 }
 
-// Ejemplo de uso
-const manager = new ProductManager();
-console.log(manager.getProducts()); 
-
-manager.addProduct({
-    title: "producto prueba",
-    description: "Este es un producto prueba",
-    price: 200,
-    thumbnail: "Sin imagen",
-    code: "abc123",
-    stock: 25
-});
-
-manager.addProduct({
-    title: "producto prueba 2",
-    description: "Este es un producto prueba 2",
-    price: 400,
-    thumbnail: "Sin imagen",
-    code: "dfg456",
-    stock: 50
-});
-
-console.log(manager.getProducts()); // Muestra los productos agregados y generados con distintas IDs
-
-const product = manager.getProductById(1);
-console.log(product); // Muestra el producto con id 1
-
-manager.updateProduct(1, { price: 250 }); // Actualiza el precio del producto con id 1
-console.log(manager.getProductById(1)); // Muestra el producto actualizado
-
-manager.deleteProduct(1); // Elimina el producto con id 1
-manager.deleteProduct(2); // Elimina el producto con id 2
-console.log(manager.getProducts()); // Debe mostrar un arreglo vacío
+// Uso de la clase
+const manager = new ProductManager('products.json'); // Aquí 'products.json' es el archivo donde se guardan los productos
