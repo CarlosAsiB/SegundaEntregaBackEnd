@@ -20,7 +20,7 @@ class ProductManager {
     }
 
     saveProducts() {
-        const data = JSON.stringify({ products: this.products, nextId: this.nextId });
+        const data = JSON.stringify({ products: this.products, nextId: this.nextId }, null, 2);
         fs.writeFileSync(this.filePath, data, 'utf8');
     }
 
@@ -73,5 +73,4 @@ class ProductManager {
     }
 }
 
-// Uso de la clase
-const manager = new ProductManager('products.json'); // Aquí 'products.json' es el archivo donde se guardan los productos
+module.exports = ProductManager;

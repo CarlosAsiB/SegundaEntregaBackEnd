@@ -1,0 +1,15 @@
+{
+    "products": [
+        { "id": 1, "title": "Espresso", "description": "Rich and bold espresso, perfect for a quick caffeine fix.", "price": 3, "thumbnail": "url1", "code": "ESP001", "stock": 100 },
+        { "id": 2, "title": "Latte", "description": "Smooth and creamy latte made with steamed milk and a shot of espresso.", "price": 4, "thumbnail": "url2", "code": "LAT002", "stock": 80 },
+        { "id": 3, "title": "Cappuccino", "description": "A balanced blend of espresso, steamed milk, and a frothy top.", "price": 4, "thumbnail": "url3", "code": "CAP003", "stock": 90 },
+        { "id": 4, "title": "Americano", "description": "Espresso with hot water added, making for a strong and smooth cup.", "price": 3, "thumbnail": "url4", "code": "AME004", "stock": 85 },
+        { "id": 5, "title": "Mocha", "description": "Chocolatey mocha with espresso, steamed milk, and chocolate syrup.", "price": 4.5, "thumbnail": "url5", "code": "MOC005", "stock": 70 },
+        { "id": 6, "title": "Macchiato", "description": "Espresso marked with just a splash of frothy milk.", "price": 3.5, "thumbnail": "url6", "code": "MAC006", "stock": 75 },
+        { "id": 7, "title": "Flat White", "description": "Rich espresso with velvety milk, a smooth and creamy coffee.", "price": 4, "thumbnail": "url7", "code": "FLW007", "stock": 65 },
+        { "id": 8, "title": "Cortado", "description": "Balanced and bold, equal parts espresso and warm milk.", "price": 3.5, "thumbnail": "url8", "code": "COR008", "stock": 60 },
+        { "id": 9, "title": "Iced Coffee", "description": "Chilled coffee served over ice, refreshing and energizing.", "price": 3, "thumbnail": "url9", "code": "ICE009", "stock": 50 },
+        { "id": 10, "title": "Nitro Cold Brew", "description": "Cold brew coffee infused with nitrogen for a creamy and smooth texture.", "price": 5, "thumbnail": "url10", "code": "NCB010", "stock": 40 }
+    ],
+    "nextId": 11
+}
